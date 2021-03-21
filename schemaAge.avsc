@@ -1,0 +1,9 @@
+{
+"type": "record",
+"name": "VaccinatedPerson",
+"fields" : 
+	[
+		{"name":"id", "type":"string"},
+		{"name":"age", "type":"string"}
+	]
+}

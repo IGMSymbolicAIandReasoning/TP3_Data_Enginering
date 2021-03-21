@@ -1,0 +1,13 @@
+{
+"type": "record",
+"name": "VaccinatedPerson",
+"fields" : 
+	[
+		{"name":"id", "type":"string"},
+		{"name":"fname", "type":"string"},
+		{"name":"lname", "type":"string"},
+		{"name":"vaccine", "type":"string"},
+		{"name":"date", "type":"string"},
+		{"name":"siderCode", "type":"string"}
+	]
+}
