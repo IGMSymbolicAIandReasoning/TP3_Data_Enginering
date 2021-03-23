@@ -25,18 +25,27 @@ object ConsumerAnonymous extends App {
   val consumer = new KafkaConsumer[String, Array[Byte]](props)
 
   consumer.subscribe(util.Arrays.asList(TOPIC))
-  val file: String = new String(Files.readAllBytes(Paths.get("/Users/louis_billaut/Desktop/M2/data_engineer/project2/TP2_Data_Engineering/schemaAnonymous.avsc")))
+  val file: String = new String(Files.readAllBytes(Paths.get("/Users/louis_billaut/Desktop/M2/data_engineer/project2/TP3_Data_Enginering/schemaAnonymous.avsc")))
   val parser: Schema.Parser = new Schema.Parser
   val schema: Schema = parser.parse(file)
   val recordInjection: Injection[GenericRecord, Array[Byte]] = GenericAvroCodecs.toBinary(schema)
+  val countingSideEffect: scala.collection.mutable.Map[String, Long] = scala.collection.mutable.Map[String, Long]()
   while(true){
-    val records : ConsumerRecords[String, Array[Byte]] = consumer.poll(100);
+    var records: ConsumerRecords[String, Array[Byte]] = consumer.poll(100);
     records.forEach(r => {
       val siderCode = recordInjection.invert(r.value()).get.get("siderCode").toString
+      if(!countingSideEffect.contains(siderCode)) {
+        countingSideEffect(siderCode) = 0
+      }
+      countingSideEffect(siderCode) = countingSideEffect(siderCode) + 1
       if(siderCode == "C0027497"){
         System.out.println("id=" + recordInjection.invert(r.value()).get.get("id") + ", vaccine=" + recordInjection.invert(r.value()).get.get("vaccine") + ", date=" + recordInjection.invert(r.value()).get.get("date") + ", siderCode=" + siderCode)
       }
     })
+    if(!records.isEmpty){
+      System.out.println("total side effects: " + countingSideEffect.toString())
+      records = consumer.poll(100)
+    }
   }
 
 

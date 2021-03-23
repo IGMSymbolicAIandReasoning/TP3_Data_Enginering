@@ -55,7 +55,20 @@ class Producer(val prop: Map[String, String]) {
   }
 
 
+  def startAVROroducerByGroup(map : util.Map[String, util.List[Array[Byte]]]): Unit ={
+    val props = new Properties()
+    prop.foreach(a => props.put(a._1, a._2))
+    val myProducer = new KafkaProducer[String, Array[Byte]](props)
 
+    map.keySet().forEach(key => {
+      map.get(key).forEach(r => {
+        val record = new ProducerRecord(key, key, r)
+        myProducer.send(record)
+      })
+      System.out.println("sent on topic: " + key)
+    })
+
+  }
 
 
 }

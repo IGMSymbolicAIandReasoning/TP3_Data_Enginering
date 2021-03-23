@@ -18,8 +18,10 @@ object Main extends App {
   println("done.")
 
   //db.extract_json_sider_records()
-  db.extract_avro_sider_records()
+  //db.extract_avro_sider_records()
   //db.extract_avro_age_records()
+  //db.extract_avro_sider_records()
+  db.extract_avro_sider_records_by_group()
   //print("writes in file : ")
   //db.toFile(db.model, LabelBase.OUTPUT_FILE, "RDF/XML-ABBREV")
   println("done")
