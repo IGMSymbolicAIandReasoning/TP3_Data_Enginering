@@ -13,7 +13,7 @@ import java.util
 object ConsumerCountingSideEffect extends App {
   import java.util.Properties
 
-  val TOPIC="tp2"
+  val TOPIC="tp1"
 
   val  props = new Properties()
   props.put("bootstrap.servers", "localhost:9092")
@@ -25,7 +25,7 @@ object ConsumerCountingSideEffect extends App {
   val consumer = new KafkaConsumer[String, Array[Byte]](props)
 
   consumer.subscribe(util.Arrays.asList(TOPIC))
-  val file: String = new String(Files.readAllBytes(Paths.get(LabelBase.SCHEMA_ANONYMOUS)))
+  val file: String = new String(Files.readAllBytes(Paths.get(LabelBase.SCHEMA)))
   val parser: Schema.Parser = new Schema.Parser
   val schema: Schema = parser.parse(file)
   val recordInjection: Injection[GenericRecord, Array[Byte]] = GenericAvroCodecs.toBinary(schema)
