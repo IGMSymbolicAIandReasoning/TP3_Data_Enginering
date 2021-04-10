@@ -2,15 +2,16 @@ package drugBankTD
 
 import java.io.{FileWriter, IOException}
 import java.util
-import java.util.{ArrayList, Calendar, Date}
+import java.util.{ArrayList, Calendar, Date, Locale}
 import java.lang
 import com.github.javafaker.Faker
 import org.apache.jena.rdf.model.{Model, ModelFactory}
 
 import java.text.SimpleDateFormat
-import java.time.{Instant, Year}
+import java.time.{Instant, LocalDate, Period, Year, ZoneId}
 import drugBankTD.Producer
 
+import java.time.format.DateTimeFormatter
 import scala.collection.convert.ImplicitConversions.`collection AsScalaIterable`
 import scala.util.control.Breaks.break
 
@@ -32,6 +33,7 @@ class LubmExtractor(val dbSource: String, val male: Int, val vaccinationPercent:
   private val typeProperty = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
   private val rdfType = model.createProperty(typeProperty)
   private val sdf = new SimpleDateFormat("dd/MM/yyyy")
+  private val sdf2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US)
   private val twenty : Date = sdf.parse("01/01/2001")
   private val thirty : Date = sdf.parse("01/01/1991")
   private val seventy : Date = sdf.parse("01/01/1951")
@@ -301,7 +303,18 @@ class LubmExtractor(val dbSource: String, val male: Int, val vaccinationPercent:
       "value.serializer" ->  "org.apache.kafka.common.serialization.ByteArraySerializer"
     )
     new Producer(map).startAVROroducerByGroup(res)
+  }
 
+  def getAllAges() : collection.mutable.Map[String, Int] = {
+    var IdAgeMap = collection.mutable.Map[String, Int]()
+    all_subjects.forEach(uri => {
+      val subject = model.createResource(uri)
+      val birthdate = sdf2.parse(model.getProperty(subject, model.createProperty("http://extension.group1.fr/onto#birhtdate")).getObject.toString)
+      val age = LocalDate.now().getYear - birthdate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getYear
+      val id = model.getProperty(subject, model.createProperty("http://extension.group1.fr/onto#id")).getObject.toString
+      IdAgeMap += (id -> age)
+    })
+    return IdAgeMap
   }
 
 }
