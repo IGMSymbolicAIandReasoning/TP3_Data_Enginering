@@ -41,7 +41,6 @@ object ConsumerCountingSideEffect extends App {
     })
     if(!records.isEmpty){
       System.out.println("total side effects: " + countingSideEffect.toString())
-      records = consumer.poll(100)
     }
   }
 }

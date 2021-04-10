@@ -43,7 +43,6 @@ class ConsumerByGroup(topic: String) {
           })
           if(!records.isEmpty){
             System.out.println("total side effects for vaccine " + topic + ": " + countingSideEffect.toString())
-            records = consumer.poll(100)
           }
         }
       }
