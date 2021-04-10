@@ -269,7 +269,6 @@ class LubmExtractor(val dbSource: String, val male: Int, val vaccinationPercent:
     // For all subjects in our db
     all_subjects.forEach(uri => {
       val subject = model.createResource(uri)
-      println("quel bail")
 
       // Proceed with extraction only if the subject has a "vaccine" property
       if (model.contains(subject, model.createProperty("http://extension.group1.fr/onto#vaccine"))) {
@@ -292,11 +291,9 @@ class LubmExtractor(val dbSource: String, val male: Int, val vaccinationPercent:
         seq_records.add(personSiderInfo)
       }
     })
-    println("fini")
 
 
     val res = new AvroConvertor().launchProducerByGroup(seq_records)
-    println("fin2")
 
     val map = Map(
       "bootstrap.servers" ->  "localhost:9092",
@@ -304,7 +301,6 @@ class LubmExtractor(val dbSource: String, val male: Int, val vaccinationPercent:
       "value.serializer" ->  "org.apache.kafka.common.serialization.ByteArraySerializer"
     )
     new Producer(map).startAVROroducerByGroup(res)
-    println("fin3")
 
   }
 
