@@ -13,7 +13,7 @@ import java.util
 object ConsumerAnonymous extends App {
   import java.util.Properties
 
-  val TOPIC="tp2"
+  val TOPIC="anonymousSideEffect"
 
   val  props = new Properties()
   props.put("bootstrap.servers", "localhost:9092")

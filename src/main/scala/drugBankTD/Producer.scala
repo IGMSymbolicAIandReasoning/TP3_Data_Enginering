@@ -45,7 +45,7 @@ class Producer(val prop: Map[String, String]) {
     prop.foreach(a => props.put(a._1, a._2))
     val producer = new KafkaProducer[String, Array[Byte]](props)
 
-    val TOPIC="tp2"
+    val TOPIC="anonymousSideEffect"
 
     lst.forEach(s => {
       val record = new ProducerRecord(TOPIC, "avroAnonymousSend", s)
