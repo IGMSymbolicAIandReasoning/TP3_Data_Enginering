@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="sbt 1" modules="tp3_data_enginering_2462" />
+    <profile name="sbt 1" modules="tp2_IA,tp3_data_enginering_2462" />
   </component>
 </project>

@@ -60,10 +60,19 @@ class Producer(val prop: Map[String, String]) {
     prop.foreach(a => props.put(a._1, a._2))
     val myProducer = new KafkaProducer[String, Array[Byte]](props)
 
+    println("okeeeeeeeeeeeeee")
     map.keySet().forEach(key => {
+      println("AC")
+
       map.get(key).forEach(r => {
+        println("DC")
+
         val record = new ProducerRecord(key, key, r)
+        println("DE")
+
         myProducer.send(record)
+        println("EF")
+
       })
       System.out.println("sent on topic: " + key)
     })

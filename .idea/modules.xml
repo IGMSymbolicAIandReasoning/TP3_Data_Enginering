@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tp2_IA.iml" filepath="$PROJECT_DIR$/.idea/modules/tp2_IA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tp2_IA-build.iml" filepath="$PROJECT_DIR$/.idea/modules/tp2_IA-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/tp3_data_enginering_2462.iml" filepath="$PROJECT_DIR$/.idea/modules/tp3_data_enginering_2462.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/tp3_data_enginering_2462-build.iml" filepath="$PROJECT_DIR$/.idea/modules/tp3_data_enginering_2462-build.iml" />
     </modules>

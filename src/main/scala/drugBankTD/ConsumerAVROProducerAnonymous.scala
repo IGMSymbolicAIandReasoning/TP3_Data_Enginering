@@ -29,7 +29,7 @@ object ConsumerAVROProducerAnonymous extends App {
   val consumer = new KafkaConsumer[String, Array[Byte]](props)
 
   consumer.subscribe(util.Arrays.asList(TOPIC))
-  val file: String = new String(Files.readAllBytes(Paths.get("/Users/louis_billaut/Desktop/M2/data_engineer/project2/TP3_Data_Enginering/schema.avsc")))
+  val file: String = new String(Files.readAllBytes(Paths.get("/home/pierrejean/IdeaProjects/TP3_Data_Enginering/TP3_Data_Enginering/schema.avsc")))
   val parser: Schema.Parser = new Schema.Parser
   val schema: Schema = parser.parse(file)
   val recordInjection: Injection[GenericRecord, Array[Byte]] = GenericAvroCodecs.toBinary(schema)
