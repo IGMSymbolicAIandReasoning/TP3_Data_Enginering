@@ -23,7 +23,7 @@ public class AvroConvertor {
 
     public List<byte[]> launchProducer(ArrayList<Map<String, String>> records) throws IOException {
         //File file = new File(getClass().getClassLoader().getResource("/home/pierrejean/IdeaProjects/dataEngineeringTP1/schema.avsc").getFile());
-        var file = new String(Files.readAllBytes(Paths.get("/home/pierrejean/IdeaProjects/TP3_Data_Enginering/schema.avsc")));
+        var file = new String(Files.readAllBytes(Paths.get(LabelBase.SCHEMA())));
         Schema.Parser parser = new Schema.Parser();
         Schema schema = parser.parse(file);
         Injection<GenericRecord, byte[]> recordInjection = GenericAvroCodecs.toBinary(schema);
@@ -44,7 +44,7 @@ public class AvroConvertor {
 
     public Map<String, List<byte[]>> launchProducerByGroup(ArrayList<Map<String, String>> records) throws IOException {
         //File file = new File(getClass().getClassLoader().getResource("/home/pierrejean/IdeaProjects/dataEngineeringTP1/schema.avsc").getFile());
-        var file = new String(Files.readAllBytes(Paths.get("/home/pierrejean/IdeaProjects/TP3_Data_Enginering/schema.avsc")));
+        var file = new String(Files.readAllBytes(Paths.get(LabelBase.SCHEMA())));
         var res = new HashMap<String, List<byte[]>>();
         Schema.Parser parser = new Schema.Parser();
         Schema schema = parser.parse(file);
@@ -68,7 +68,7 @@ public class AvroConvertor {
 
     public List<byte[]> launchAgeProducer(ArrayList<Map<String, String>> records) throws IOException {
         //File file = new File(getClass().getClassLoader().getResource("/home/pierrejean/IdeaProjects/dataEngineeringTP1/schema.avsc").getFile());
-        var file = new String(Files.readAllBytes(Paths.get("/Users/louis_billaut/Desktop/M2/data_engineer/project2/TP2_Data_Engineering/schemaAge.avsc")));
+        var file = new String(Files.readAllBytes(Paths.get(LabelBase.SCHEMA())));
         Schema.Parser parser = new Schema.Parser();
         Schema schema = parser.parse(file);
         Injection<GenericRecord, byte[]> recordInjection = GenericAvroCodecs.toBinary(schema);
@@ -84,7 +84,7 @@ public class AvroConvertor {
 
     public List<byte[]> launchAnonymousProducer(ArrayList<Map<String, String>> records) throws IOException {
         //File file = new File(getClass().getClassLoader().getResource("/home/pierrejean/IdeaProjects/dataEngineeringTP1/schema.avsc").getFile());
-        var file = new String(Files.readAllBytes(Paths.get("/Users/louis_billaut/Desktop/M2/data_engineer/project2/TP3_Data_Enginering/schemaAnonymous.avsc")));
+        var file = new String(Files.readAllBytes(Paths.get(LabelBase.SCHEMA())));
         Schema.Parser parser = new Schema.Parser();
         Schema schema = parser.parse(file);
         Injection<GenericRecord, byte[]> recordInjection = GenericAvroCodecs.toBinary(schema);

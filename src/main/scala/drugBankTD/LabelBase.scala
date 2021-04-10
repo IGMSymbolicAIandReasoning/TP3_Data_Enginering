@@ -21,4 +21,6 @@ object LabelBase {
 
   val SIDER_EFFECTS = new util.ArrayList[String](util.Arrays.asList("C0151828", "C0015672", "C0018681", "C0231528", "C0085593", "C0003862", "C0015967", "C0151605", "C0852625", "C0027497", "C0231218", "C0497156", "C0863083"))
   val DATE_START_VACCINATION_CAMPAIGN = Instant.parse("2020-12-27T10:00:00.00Z")
+
+  val SCHEMA = "/Users/thomas/Documents/cure/TP3_Data_Enginering/schema.avsc"
 }
