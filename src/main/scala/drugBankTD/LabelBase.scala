@@ -25,4 +25,6 @@ object LabelBase {
 
   val SCHEMA = "/Users/louis_billaut/Desktop/M2/data_engineer/project2/TP3_Data_Enginering/schema.avsc"
   val SCHEMA_ANONYMOUS = "/Users/louis_billaut/Desktop/M2/data_engineer/project2/TP3_Data_Enginering/schemaAnonymous.avsc"
+  val SCHEMA_AGE = "/Users/louis_billaut/Desktop/M2/data_engineer/project2/TP3_Data_Enginering/schemaAge.avsc"
+
 }

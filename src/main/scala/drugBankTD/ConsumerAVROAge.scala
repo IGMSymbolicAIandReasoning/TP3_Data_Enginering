@@ -27,7 +27,7 @@ object ConsumerAVROAge extends App {
   val consumer = new KafkaConsumer[String, Array[Byte]](props)
 
   consumer.subscribe(util.Arrays.asList(TOPIC))
-  val file: String = new String(Files.readAllBytes(Paths.get(LabelBase.SCHEMA)))
+  val file: String = new String(Files.readAllBytes(Paths.get(LabelBase.SCHEMA_AGE)))
   val parser: Schema.Parser = new Schema.Parser
   val schema: Schema = parser.parse(file)
   val recordInjection: Injection[GenericRecord, Array[Byte]] = GenericAvroCodecs.toBinary(schema)

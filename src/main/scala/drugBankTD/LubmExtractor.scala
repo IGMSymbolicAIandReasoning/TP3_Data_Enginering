@@ -265,6 +265,44 @@ class LubmExtractor(val dbSource: String, val male: Int, val vaccinationPercent:
     new Producer(map).startAVROroducer(res)
   }
 
+  def extract_avro_age_sider_records(): Unit = {
+    var seq_records : ArrayList[util.Map[String, String]] = new ArrayList()
+
+    // For all subjects in our db
+    all_subjects.forEach(uri => {
+      val subject = model.createResource(uri)
+
+      // Proceed with extraction only if the subject has a "vaccine" property
+      if (model.contains(subject, model.createProperty("http://extension.group1.fr/onto#vaccine"))) {
+
+        // Get the vaccine name
+        val vaccineObject = model.getProperty(subject, model.createProperty("http://extension.group1.fr/onto#vaccine")).getObject.toString
+        val vaccineName = vaccineObject.substring(vaccineObject.lastIndexOf("#") + 1)
+
+        // Collect all the needed info in a Map
+        val birthdate = sdf2.parse(model.getProperty(subject, model.createProperty("http://extension.group1.fr/onto#birhtdate")).getObject.toString)
+        val age = LocalDate.now().getYear - birthdate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getYear
+        val personSiderInfo = util.Map.of(
+          "id" , model.getProperty(subject, model.createProperty("http://extension.group1.fr/onto#id")).getObject.toString,
+          "age" , age.toString
+        )
+
+        // Save the map in a Seq
+        seq_records.add(personSiderInfo)
+      }
+    })
+
+
+    val res = new AvroConvertor().launchAgeProducer(seq_records)
+
+    val map = Map(
+      "bootstrap.servers" ->  "localhost:9092",
+      "key.serializer" -> "org.apache.kafka.common.serialization.StringSerializer",
+      "value.serializer" ->  "org.apache.kafka.common.serialization.ByteArraySerializer"
+    )
+    new Producer(map).startAVROroducer(res)
+  }
+
   def extract_avro_sider_records_by_group(): Unit = {
     var seq_records : ArrayList[util.Map[String, String]] = new ArrayList()
 
