@@ -47,6 +47,10 @@ class LubmExtractor(val dbSource: String, val male: Int, val vaccinationPercent:
     load_resources()
   }
 
+  def loadRdf(file : String): Unit = {
+    model.read(file, "RDF")
+    load_resources()
+  }
 
   /**
    * create a list with all the subjects having the desired properties

@@ -11,6 +11,7 @@ object LabelBase {
 
   val INPUT_FILE : String = "file:lubm1.ttl"
   val OUTPUT_FILE : String = "lubm1_extended.rdf"
+  val INPUT_EXTENDED_FILE : String = "file:lubm1_extended.rdf"
 
   val SUJECTS = new util.ArrayList[String](util.Arrays.asList("http://swat.cse.lehigh.edu/onto/univ-bench.owl#AssistantProfessor", "http://swat.cse.lehigh.edu/onto/univ-bench.owl#AssociateProfessor","http://swat.cse.lehigh.edu/onto/univ-bench.owl#FullProfessor", "http://swat.cse.lehigh.edu/onto/univ-bench.owl#GraduateStudent","http://swat.cse.lehigh.edu/onto/univ-bench.owl#Lecturer", "http://swat.cse.lehigh.edu/onto/univ-bench.owl#UndergraduateStudent"))
   val VACCINES_NAMES = new util.ArrayList[String](util.Arrays.asList("Pfizer", "Moderna","AstraZeneca", "SpoutnikV", "CanSinoBi"))
@@ -22,5 +23,6 @@ object LabelBase {
   val SIDER_EFFECTS = new util.ArrayList[String](util.Arrays.asList("C0151828", "C0015672", "C0018681", "C0231528", "C0085593", "C0003862", "C0015967", "C0151605", "C0852625", "C0027497", "C0231218", "C0497156", "C0863083"))
   val DATE_START_VACCINATION_CAMPAIGN = Instant.parse("2020-12-27T10:00:00.00Z")
 
-  val SCHEMA = "/Users/thomas/Documents/cure/TP3_Data_Enginering/schema.avsc"
+  val SCHEMA = "/Users/louis_billaut/Desktop/M2/data_engineer/project2/TP3_Data_Enginering/schema.avsc"
+  val SCHEMA_ANONYMOUS = "/Users/louis_billaut/Desktop/M2/data_engineer/project2/TP3_Data_Enginering/schemaAnonymous.avsc"
 }
