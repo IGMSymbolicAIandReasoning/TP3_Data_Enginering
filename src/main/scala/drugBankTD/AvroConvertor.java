@@ -84,7 +84,7 @@ public class AvroConvertor {
 
     public List<byte[]> launchAnonymousProducer(ArrayList<Map<String, String>> records) throws IOException {
         //File file = new File(getClass().getClassLoader().getResource("/home/pierrejean/IdeaProjects/dataEngineeringTP1/schema.avsc").getFile());
-        var file = new String(Files.readAllBytes(Paths.get(LabelBase.SCHEMA())));
+        var file = new String(Files.readAllBytes(Paths.get(LabelBase.SCHEMA_ANONYMOUS())));
         Schema.Parser parser = new Schema.Parser();
         Schema schema = parser.parse(file);
         Injection<GenericRecord, byte[]> recordInjection = GenericAvroCodecs.toBinary(schema);

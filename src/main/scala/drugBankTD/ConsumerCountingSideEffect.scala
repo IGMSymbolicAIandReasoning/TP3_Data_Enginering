@@ -10,7 +10,7 @@ import java.nio.file.{Files, Paths}
 import java.util
 
 
-object ConsumerAnonymous extends App {
+object ConsumerCountingSideEffect extends App {
   import java.util.Properties
 
   val TOPIC="tp2"
@@ -31,14 +31,17 @@ object ConsumerAnonymous extends App {
   val recordInjection: Injection[GenericRecord, Array[Byte]] = GenericAvroCodecs.toBinary(schema)
   val countingSideEffect: scala.collection.mutable.Map[String, Long] = scala.collection.mutable.Map[String, Long]()
   while(true){
-    var records: ConsumerRecords[String, Array[Byte]] = consumer.poll(100);
+    var records: ConsumerRecords[String, Array[Byte]] = consumer.poll(100)
     records.forEach(r => {
       val siderCode = recordInjection.invert(r.value()).get.get("siderCode").toString
-      if(siderCode == "C0027497"){
-        System.out.println("id=" + recordInjection.invert(r.value()).get.get("id") + ", vaccine=" + recordInjection.invert(r.value()).get.get("vaccine") + ", date=" + recordInjection.invert(r.value()).get.get("date") + ", siderCode=" + siderCode)
+      if(!countingSideEffect.contains(siderCode)) {
+        countingSideEffect(siderCode) = 0
       }
+      countingSideEffect(siderCode) = countingSideEffect(siderCode) + 1
     })
+    if(!records.isEmpty){
+      System.out.println("total side effects: " + countingSideEffect.toString())
+      records = consumer.poll(100)
+    }
   }
-
-
 }
