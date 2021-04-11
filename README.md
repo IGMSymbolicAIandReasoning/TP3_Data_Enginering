@@ -1,4 +1,4 @@
-# Date Engineering Project
+# Data Engineering Project
 ## Covid-19 Vaccines Side Effects
 
 This project was developped during our the last year of our master degree in software development and data engineering.
