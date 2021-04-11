@@ -1,5 +1,5 @@
 # Date Engineering Project
-## Covid-19 Vacinnes Side Effects
+## Covid-19 Vaccines Side Effects
 
 This project was developped during our the last year of our master degree in software development and data engineering.
 This project aims to help us understand what kind of technologies are employed by data enginers and how to use these to create, transfer, process and analysing large amounts of data throught several exercices. 
@@ -13,20 +13,25 @@ The group in charge of the Covid-19 Vacinnes Side Effects project was composed b
 
 
 ## Availables features
-### Fake data extension (Ex1)
-- todo
-### Avro format (Ex2)
-- todo
-### Anonymisation (Ex3.1)
-- todo
-### Side effects counting (Ex3.2)
-- todo
-
-
-## Difficulties encountered
-
-- todo
-
+First, run `CreateDatas`to create the `lubm1_extended`file
+### Integrate the RDF data in the pipeline (Ex1)
+ - Run `ConsumerAvroAge`
+ - Run `SendDataAge`
+### Anonymized transactions (Ex2)
+- Run `ConsumerAvroProducerAnonymous`
+- Run `SendData`
+### A first consumer for a specific side effect (Ex3)
+- Run `ConsumerAnonymous`
+- Run `SendData`
+### Counting side effects (Ex4)
+- Run `ConsumerCountingSideEffect`
+- Run `SendData`
+### Counting side effects per vaccine (Ex5)
+- Run `ConsumerVaccineGroup`
+- Run `SendDataByGroup`
+### Counting side effects per vaccine and age intervals (Ex6)
+- Run `ConsumerVaccineGroupAndAge`
+- Run `SendDataByGroup`
 
 ## Sources
 
